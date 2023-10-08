@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Загрузка архивов погодных условий";
+}
+
+<h1>Загрузка архивов погодных условий</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="files">Выберите файлы Excel:</label>
+        <input type="file" name="files" id="files" multiple required />
+    </div>
+    <button type="submit" class="btn btn-primary">Загрузить</button>
+</form>

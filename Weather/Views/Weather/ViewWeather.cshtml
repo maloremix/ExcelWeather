@@ -1,0 +1,84 @@
+﻿@using System.Globalization
+@using Weather.Models;
+@model PaginationViewModel
+
+<h2>Просмотр архивов погодных условий</h2>
+
+<form method="post" action="@Url.Action("FilterWeatherData", "Weather")">
+    <label for="year">Год:</label>
+    <select id="year" name="year">
+        @for (int i = DateTime.Now.Year; i >= 2000; i--)
+        {
+            <option value="@i">@i</option>
+        }
+    </select>
+
+    <label for="month">Месяц:</label>
+    <select id="month" name="month">
+        @for (int i = 1; i <= 12; i++)
+        {
+            <option value="@i">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+        }
+    </select>
+
+
+    <button type="submit">Фильтровать</button>
+</form>
+
+@if (Model != null && Model!.Records != null && Model!.Records.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Температура (°C)</th>
+                <th>Относительная влажность (%)</th>
+                <th>Точка росы (°C)</th>
+                <th>Атмосферное давление (мм рт. ст.)</th>
+                <th>Направление ветра</th>
+                <th>Скорость ветра (м/с)</th>
+                <th>Облачность (%)</th>
+                <th>Нижняя граница облачности (м)</th>
+                <th>Горизонтальная видимость (км)</th>
+                <th>Погодные явления</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr>
+                    <td>@(record.Date.HasValue ? record.Date.Value.ToShortDateString() : string.Empty)</td>
+                    <td>@record.Time</td>
+                    <td>@record.Temperature</td>
+                    <td>@record.RelativeHumidity</td>
+                    <td>@record.DewPoint</td>
+                    <td>@record.AtmosphericPressure</td>
+                    <td>@record.WindDirection</td>
+                    <td>@record.WindSpeed</td>
+                    <td>@record.Cloudiness</td>
+                    <td>@(record.CloudBaseHeight)</td>
+                    <td>@record.Visibility</td>
+                    <td>@record.WeatherPhenomena</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        @if (Model.Page > 1)
+        {
+            <a href="@Url.Action("FilterWeatherData", "Weather", new { year = Model.Year, month = Model.Month, page = Model.Page - 1 })" class="btn btn-primary">Предыдущая</a>
+        }
+
+        @if (Model.Page < Model.TotalPages)
+        {
+            <span> </span>
+            <a href="@Url.Action("FilterWeatherData", "Weather", new { year = Model.Year, month = Model.Month, page = Model.Page + 1 })" class="btn btn-primary">Следующая</a>
+        }
+    </div>
+
+
+
+
+}

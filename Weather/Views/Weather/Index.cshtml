@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Главная страница";
+}
+
+<h1>Главная страница</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Меню</h2>
+            <ul>
+                <li><a asp-controller="Weather" asp-action="ViewWeather">Просмотр архивов погодных условий</a></li>
+                <li><a asp-controller="Weather" asp-action="Upload">Загрузка архивов погодных условий</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <!-- Здесь можно разместить другое содержимое главной страницы -->
+        </div>
+    </div>
+</div>

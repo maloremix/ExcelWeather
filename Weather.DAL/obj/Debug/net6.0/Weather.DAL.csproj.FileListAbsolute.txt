@@ -1,0 +1,14 @@
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.csproj.AssemblyReference.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.AssemblyInfoInputs.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.AssemblyInfo.cs
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.csproj.CoreCompileInputs.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\bin\Debug\net6.0\Weather.DAL.deps.json
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\bin\Debug\net6.0\Weather.DAL.runtimeconfig.json
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\bin\Debug\net6.0\Weather.DAL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\bin\Debug\net6.0\Weather.DAL.pdb
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\refint\Weather.DAL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.pdb
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\Weather.DAL.genruntimeconfig.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.DAL\obj\Debug\net6.0\ref\Weather.DAL.dll

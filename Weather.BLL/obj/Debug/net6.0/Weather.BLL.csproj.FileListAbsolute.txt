@@ -1,0 +1,15 @@
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.csproj.AssemblyReference.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.AssemblyInfoInputs.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.AssemblyInfo.cs
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.csproj.CoreCompileInputs.cache
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\bin\Debug\net6.0\Weather.BLL.deps.json
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\bin\Debug\net6.0\Weather.BLL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\bin\Debug\net6.0\Weather.BLL.pdb
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\bin\Debug\net6.0\Weather.DAL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\bin\Debug\net6.0\Weather.DAL.pdb
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.csproj.CopyComplete
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\refint\Weather.BLL.dll
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\Weather.BLL.pdb
+C:\Users\iapar\source\repos\WebApplication1\Weather.BLL\obj\Debug\net6.0\ref\Weather.BLL.dll

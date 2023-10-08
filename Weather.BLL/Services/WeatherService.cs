@@ -40,44 +40,13 @@ namespace Weather.BLL.Services
 
                 foreach (var stream in fileStreams)
                 {
-                    using (var package = new XSSFWorkbook(stream))
-                    {
-                        for (int tabIndex = 0; tabIndex < package.NumberOfSheets; tabIndex++)
-                        {
-                            ISheet sheet = package.GetSheetAt(tabIndex);
-                            for (int row = 4; row <= sheet.LastRowNum; row++)
-                            {
-                                var currentRow = sheet.GetRow(row);
-                                if (currentRow != null)
-                                {
-                                    var record = new WeatherRecord
-                                    {
-                                        Date = currentRow.GetCell(0).GetDateValue(),
-                                        Time = currentRow.GetCell(1).GetTimeValue(),
-                                        Temperature = currentRow.GetCell(2).GetNumericValue(),
-                                        RelativeHumidity = currentRow.GetCell(3).GetNumericValue(),
-                                        DewPoint = currentRow.GetCell(4).GetNumericValue(),
-                                        AtmosphericPressure = currentRow.GetCell(5).GetNumericValue(),
-                                        WindDirection = currentRow.GetCell(6).GetStringCellValue(),
-                                        WindSpeed = currentRow.GetCell(7).GetNumericValue(),
-                                        Cloudiness = currentRow.GetCell(8).GetNumericValue(),
-                                        CloudBaseHeight = currentRow.GetCell(9).GetNumericValue(),
-                                        Visibility = currentRow.GetCell(10).GetNumericValue(),
-                                        WeatherPhenomena = currentRow.GetCell(11).GetStringCellValue(),
-                                    };
-
-                                    records.Add(record);
-                                }
-                            }
-                        }
-                    }
+                    // Загрузка данных из потока Excel
+                    var package = LoadExcelPackage(stream);
+                    records.AddRange(ParseWeatherRecords(package));
                 }
 
                 // Сохранение записей в базу данных
-                foreach (var record in records)
-                {
-                    await _weatherRepository.Create(record);
-                }
+                await SaveRecordsToDatabase(records);
 
                 return true;
             }
@@ -85,6 +54,82 @@ namespace Weather.BLL.Services
             {
                 // Обработка ошибок, например, логирование
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Загружает данные из потока Excel и возвращает рабочую книгу.
+        /// </summary>
+        /// <param name="stream">Поток данных Excel.</param>
+        /// <returns>Рабочая книга Excel.</returns>
+        private XSSFWorkbook LoadExcelPackage(Stream stream)
+        {
+            using (var package = new XSSFWorkbook(stream))
+            {
+                return package;
+            }
+        }
+
+        /// <summary>
+        /// Разбирает погодные записи из рабочей книги Excel.
+        /// </summary>
+        /// <param name="package">Рабочая книга Excel.</param>
+        /// <returns>Список погодных записей.</returns>
+        private IEnumerable<WeatherRecord> ParseWeatherRecords(XSSFWorkbook package)
+        {
+            List<WeatherRecord> records = new List<WeatherRecord>();
+
+            for (int tabIndex = 0; tabIndex < package.NumberOfSheets; tabIndex++)
+            {
+                ISheet sheet = package.GetSheetAt(tabIndex);
+                for (int row = 4; row <= sheet.LastRowNum; row++)
+                {
+                    var currentRow = sheet.GetRow(row);
+                    if (currentRow != null)
+                    {
+                        var record = CreateWeatherRecordFromRow(currentRow);
+                        records.Add(record);
+                    }
+                }
+            }
+
+            return records;
+        }
+
+        /// <summary>
+        /// Создает погодную запись из строки Excel.
+        /// </summary>
+        /// <param name="currentRow">Строка Excel.</param>
+        /// <returns>Погодная запись.</returns>
+        private WeatherRecord CreateWeatherRecordFromRow(IRow currentRow)
+        {
+            return new WeatherRecord
+            {
+                Date = currentRow.GetCell(0).GetDateValue(),
+                Time = currentRow.GetCell(1).GetTimeValue(),
+                Temperature = currentRow.GetCell(2).GetNumericValue(),
+                RelativeHumidity = currentRow.GetCell(3).GetNumericValue(),
+                DewPoint = currentRow.GetCell(4).GetNumericValue(),
+                AtmosphericPressure = currentRow.GetCell(5).GetNumericValue(),
+                WindDirection = currentRow.GetCell(6).GetStringCellValue(),
+                WindSpeed = currentRow.GetCell(7).GetNumericValue(),
+                Cloudiness = currentRow.GetCell(8).GetNumericValue(),
+                CloudBaseHeight = currentRow.GetCell(9).GetNumericValue(),
+                Visibility = currentRow.GetCell(10).GetNumericValue(),
+                WeatherPhenomena = currentRow.GetCell(11).GetStringCellValue(),
+            };
+        }
+
+        /// <summary>
+        /// Сохраняет записи в базу данных.
+        /// </summary>
+        /// <param name="records">Список погодных записей.</param>
+        /// <returns>Задача, представляющая асинхронную операцию.</returns>
+        private async Task SaveRecordsToDatabase(IEnumerable<WeatherRecord> records)
+        {
+            foreach (var record in records)
+            {
+                await _weatherRepository.Create(record);
             }
         }
 
@@ -109,6 +154,5 @@ namespace Weather.BLL.Services
                 throw;
             }
         }
-
     }
 }
